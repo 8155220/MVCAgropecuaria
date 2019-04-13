@@ -13,11 +13,11 @@ namespace MVCAgropecuaria.Models
         public string Apellidos { get; set; }
         public string Sexo { get; set; }
         public string CI { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public DateTime FechaIngreso { get; set; }
-        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaNacimiento { get; set; }
+        public DateTime? FechaIngreso { get; set; }
+        public DateTime? FechaRegistro { get; set; }
         public Boolean Habilitado { get; set; }
-        public DateTime FechaModificacion { get; set; }
+        public DateTime? FechaModificacion { get; set; }
         public string Domicilio { get; set; }
         public string Telefonos { get; set; }
         public string PersonaReferencia { get; set; }
@@ -25,8 +25,8 @@ namespace MVCAgropecuaria.Models
         public string TelefonoReferencia { get; set; }
 
         //foreign key
-        public int PersonaRegistroID { get; set; }
-        public int PersonaModificoID { get; set; }
+        public int? PersonaRegistroID { get; set; }
+        public int? PersonaModificoID { get; set; }
         //Navigation Property
         public virtual Cargo Cargo { get; set; }
         [ForeignKey("PersonaRegistroID")]

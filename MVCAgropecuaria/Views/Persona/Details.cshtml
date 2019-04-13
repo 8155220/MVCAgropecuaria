@@ -1,0 +1,146 @@
+﻿@model MVCAgropecuaria.Models.Persona
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Persona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaModifico.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaModifico.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaRegistro.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaRegistro.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Habilitado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habilitado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Domicilio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Domicilio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefonos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefonos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaReferencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaReferencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdParentesco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdParentesco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoReferencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoReferencia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

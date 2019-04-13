@@ -21,7 +21,7 @@ namespace MVCAgropecuaria.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Persona>()
-                .HasRequired(p => p.PersonaModifico)
+                .HasOptional(p => p.PersonaModifico)
                 .WithMany().HasForeignKey(p => p.PersonaModificoID);
         }
 

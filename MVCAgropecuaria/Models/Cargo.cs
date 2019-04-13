@@ -14,8 +14,8 @@ namespace MVCAgropecuaria.Models
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaModificacion { get; set; }
 
-        public int IdPersonaRegistro { get; set; }
-        public int IdPersonaModifico { get; set; }
+        public int? PersonaRegistroID { get; set; }
+        public int? PersonaModificoID { get; set; }
 
     }
 }

@@ -18,8 +18,8 @@ namespace MVCAgropecuaria.Models
         public Persona Persona{get;set;}
         public Rol Rol { get; set; }
 
-        public int IdPersonaRegistro { get; set; }
-        public int IdPersonaModifico { get; set; }
+        public int? PersonaRegistroID { get; set; }
+        public int? PersonaModificoID { get; set; }
 
     }
 }
