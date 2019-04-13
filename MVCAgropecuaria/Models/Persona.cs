@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -24,9 +25,14 @@ namespace MVCAgropecuaria.Models
         public string TelefonoReferencia { get; set; }
 
         //foreign key
+        public int PersonaRegistroID { get; set; }
+        public int PersonaModificoID { get; set; }
+        //Navigation Property
         public virtual Cargo Cargo { get; set; }
-        public int IdPersonaRegistro { get; set; }
-        public int IdPersonaModifico { get; set; }
-        
+        [ForeignKey("PersonaRegistroID")]
+        public virtual Persona PersonaRegistro { get; set; }
+        //[ForeignKey("PersonaModificoID")]
+        public virtual Persona PersonaModifico { get; set; }
+
     }
 }

@@ -20,7 +20,11 @@ namespace MVCAgropecuaria.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Persona>()
+                .HasRequired(p => p.PersonaModifico)
+                .WithMany().HasForeignKey(p => p.PersonaModificoID);
         }
+
 
     }
 }

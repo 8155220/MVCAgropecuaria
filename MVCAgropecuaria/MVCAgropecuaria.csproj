@@ -159,6 +159,10 @@
     <Compile Include="Migrations\201904131513384_InitialCreate.Designer.cs">
       <DependentUpon>201904131513384_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904131642140_agro1.cs" />
+    <Compile Include="Migrations\201904131642140_agro1.Designer.cs">
+      <DependentUpon>201904131642140_agro1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cargo.cs" />
     <Compile Include="Models\Persona.cs" />
@@ -222,6 +226,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904131513384_InitialCreate.resx">
       <DependentUpon>201904131513384_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904131642140_agro1.resx">
+      <DependentUpon>201904131642140_agro1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
