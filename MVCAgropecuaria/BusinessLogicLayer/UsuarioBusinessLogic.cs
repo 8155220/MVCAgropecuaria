@@ -41,7 +41,6 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         {
             using (var db = new AgropecuariaContext())
             {
-                //var usuarioYaRegistrado = db.Usuarios.FirstOrDefault(p => p.UserName == dataUsuario.UserName) != null ? true : false;
                 var usuario = db.Usuarios.Find(dataUsuario.ID);
 
                 if (usuario!=null)
@@ -52,7 +51,6 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                     usuario.FechaModificacion = DateTime.Now;
                     usuario.PersonaModificoID = SessionHelper.CURRENT_PERSON_ID;
                     usuario.PersonaRegistroID = SessionHelper.CURRENT_PERSON_ID;
-                    //db.Usuarios.Add(dataUsuario);
                     db.SaveChanges();
                     responseModel.Error = false;
                 }
@@ -65,36 +63,6 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             }
             return responseModel;
 
-            ////
-            /*
-            using (var db = new BdAgropecuariaEntities())
-            {
-
-                var personaFilterBd = db.Personas.FirstOrDefault(p => p.CI == dataPersona.CI && p.Id != dataPersona.Id);
-                if (personaFilterBd == null)
-                {
-                    // Limpiar antes de guarda
-                    dataPersona.Nombres?.Trim();
-                    dataPersona.Apellidos?.Trim();
-                    dataPersona.CI?.Trim();
-                    dataPersona.Domicilio?.Trim();
-
-                    var personaBd = db.Personas.Find(dataPersona.Id);
-                    personaBd.Nombres = dataPersona.Nombres;
-                    personaBd.Apellidos = dataPersona.Apellidos;
-                    personaBd.CI = dataPersona.CI;
-                    personaBd.FechaModificacion = DateTime.Now;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    responseModel.Error = true;
-                    responseModel.Message = "Ya existe otro registro de persona con el mismo CI";
-                }
-            }
-
-            return responseModel;*/
-            /////
         }
 
         public Response GetAllHabilitados(string userName)
@@ -103,11 +71,13 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             using (var db = new AgropecuariaContext())
             {
                 var listaUsuarios = db.Usuarios
+                    .Include("Rol")
                     .Where(usuario => usuario.Habilitado == true )
-                    .Select(MapeoBdToEntity);
+                    .Select(MapeoBdToEntity)
+                    ;
                 if (!String.IsNullOrEmpty(userName))
                 {
-                    listaUsuarios = listaUsuarios.Where(usuario => usuario.UserName.Contains(userName.ToLower()));
+                    listaUsuarios = listaUsuarios.Where(usuario => usuario.UserName.ToLower().Contains(userName.ToLower()));
                 }
                if (listaUsuarios.Any())
                 {
@@ -136,8 +106,8 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             {
                 ID = UsuarioBd.ID,
                 UserName = UsuarioBd.UserName?.Trim(),
-                Password = UsuarioBd.Password
-                //Rol = UsuarioBd.Rol;
+                Password = UsuarioBd.Password,
+                Rol = UsuarioBd.Rol
             };
         }
     }

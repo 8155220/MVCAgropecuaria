@@ -154,6 +154,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogicLayer\BaseBusinessLogic.cs" />
+    <Compile Include="BusinessLogicLayer\CargoBusinessLogic.cs" />
+    <Compile Include="BusinessLogicLayer\RolBusinessLogic.cs" />
     <Compile Include="BusinessLogicLayer\UsuarioBusinessLogic.cs" />
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

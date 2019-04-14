@@ -6,19 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVCAgropecuaria.BusinessLogicLayer;
 using MVCAgropecuaria.DAL;
 using MVCAgropecuaria.Models;
+using MVCAgropecuaria.Responses;
 
 namespace MVCAgropecuaria.Controllers
 {
     public class CargoController : Controller
     {
         private AgropecuariaContext db = new AgropecuariaContext();
-
-        // GET: Cargo
-        public ActionResult Index()
+        private CargoBusinessLogic businessLogic;
+        protected Response responseHttp;
+        public CargoController() : base()
         {
-            return View(db.Cargos.ToList());
+            businessLogic = new CargoBusinessLogic();
+            responseHttp = new Response();
+        }
+        // GET: Cargo
+        public ActionResult Index(string searchString)
+        {
+            return View(businessLogic.GetAllHabilitados(searchString).Data);
         }
 
         // GET: Cargo/Details/5
@@ -49,11 +57,27 @@ namespace MVCAgropecuaria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Descripcion,Habilitado,FechaRegistro,FechaModificacion,PersonaRegistroID,PersonaModificoID")] Cargo cargo)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Cargos.Add(cargo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var tmpAdicionarRespustaHttp = businessLogic.Create(cargo);
+                    if (tmpAdicionarRespustaHttp.Error)
+                    {
+                        ModelState.AddModelError("", tmpAdicionarRespustaHttp.Message);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+
+            }
+            catch (DataException)
+            {
+                {
+                    ModelState.AddModelError("", "Ocurrio un error, intente mas tarde");
+                }
             }
 
             return View(cargo);
@@ -83,9 +107,15 @@ namespace MVCAgropecuaria.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cargo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var response = businessLogic.Edit(cargo);
+                if (response.Error)
+                {
+                    ModelState.AddModelError("", response.Message);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(cargo);
         }
@@ -111,8 +141,18 @@ namespace MVCAgropecuaria.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Cargo cargo = db.Cargos.Find(id);
-            db.Cargos.Remove(cargo);
-            db.SaveChanges();
+            try
+            { 
+                db.Cargos.Remove(cargo);
+                db.SaveChanges();
+
+            }
+            catch (DataException)
+            {
+                    
+            }
+
+            
             return RedirectToAction("Index");
         }
 

@@ -129,10 +129,6 @@ namespace MVCAgropecuaria.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-
-                /*db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");*/
             }
             return View(usuario);
         }

@@ -6,19 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVCAgropecuaria.BusinessLogicLayer;
 using MVCAgropecuaria.DAL;
 using MVCAgropecuaria.Models;
+using MVCAgropecuaria.Responses;
 
 namespace MVCAgropecuaria.Controllers
 {
     public class RolController : Controller
     {
         private AgropecuariaContext db = new AgropecuariaContext();
-
+        private RolBusinessLogic businessLogic;
+        protected Response responseHttp;
         // GET: Rol
-        public ActionResult Index()
+        public RolController() : base()
         {
-            return View(db.Rols.ToList());
+            businessLogic = new RolBusinessLogic();
+            responseHttp = new Response();
+        }
+        public ActionResult Index(string searchString)
+        {
+            return View(businessLogic.GetAllHabilitados(searchString).Data);
         }
 
         // GET: Rol/Details/5
@@ -47,13 +55,29 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Descripcion,Habilitado,FechaRegistro,FechaModificacion,PersonaRegistroID,PersonaModificoID")] Rol rol)
+        public ActionResult Create([Bind(Include = "Descripcion")] Rol rol)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Rols.Add(rol);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var tmpAdicionarRespustaHttp = businessLogic.Create(rol);
+                    if (tmpAdicionarRespustaHttp.Error)
+                    {
+                        ModelState.AddModelError("", tmpAdicionarRespustaHttp.Message);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+
+            }
+            catch (DataException)
+            {
+                {
+                    ModelState.AddModelError("", "Ocurrio un error, intente mas tarde");
+                }
             }
 
             return View(rol);
@@ -79,13 +103,19 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Descripcion,Habilitado,FechaRegistro,FechaModificacion,PersonaRegistroID,PersonaModificoID")] Rol rol)
+        public ActionResult Edit([Bind(Include = "ID,Descripcion,Habilitado")] Rol rol)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rol).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var tmpAdicionarRespustaHttp = businessLogic.Edit(rol);
+                if (tmpAdicionarRespustaHttp.Error)
+                {
+                    ModelState.AddModelError("", tmpAdicionarRespustaHttp.Message);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(rol);
         }
