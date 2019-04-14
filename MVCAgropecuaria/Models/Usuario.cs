@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,7 +16,9 @@ namespace MVCAgropecuaria.Models
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaModificacion { get; set; }
 
+        //[ForeignKey("Persona")]
         public Persona Persona{get;set;}
+        //[ForeignKey("Rol")]
         public Rol Rol { get; set; }
 
         public int? PersonaRegistroID { get; set; }
