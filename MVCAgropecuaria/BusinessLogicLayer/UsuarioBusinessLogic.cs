@@ -97,17 +97,21 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             /////
         }
 
-        public Response GetAllHabilitados()
+        public Response GetAllHabilitados(string userName)
         {
             responseModel.Data = new List<Usuario>();
             using (var db = new AgropecuariaContext())
             {
                 var listaUsuarios = db.Usuarios
-                    .Where(usuario => usuario.Habilitado == true)
-                    .Select(MapeoBdToEntity).ToList();
+                    .Where(usuario => usuario.Habilitado == true )
+                    .Select(MapeoBdToEntity);
+                if (!String.IsNullOrEmpty(userName))
+                {
+                    listaUsuarios = listaUsuarios.Where(usuario => usuario.UserName.Contains(userName.ToLower()));
+                }
                if (listaUsuarios.Any())
                 {
-                        responseModel.Data = listaUsuarios;
+                        responseModel.Data = listaUsuarios.ToList();
                 }
             }
             return responseModel;

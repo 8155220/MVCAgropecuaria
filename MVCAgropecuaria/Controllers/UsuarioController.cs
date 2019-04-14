@@ -25,9 +25,14 @@ namespace MVCAgropecuaria.Controllers
             businessLogic = new UsuarioBusinessLogic();
             responseHttp = new Response();
         }
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(businessLogic.GetAllHabilitados().Data);
+           /* var listaUsuarios = (IList) businessLogic.GetAllHabilitados().Data;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                listaUsuarios = listaUsuarios.Where()
+            }*/
+            return View(businessLogic.GetAllHabilitados(searchString).Data);
         }
 
         // GET: Usuario/Details/5

@@ -9,6 +9,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="searchbar">
+                <input class="search_input" type="text" name="searchString" placeholder="Buscar ...">
+                <input type="submit" value="Buscar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
 <table class="table">
     <tr>
         <th>
@@ -17,24 +31,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Password)
         </th>
-     
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
