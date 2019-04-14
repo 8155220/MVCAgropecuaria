@@ -10,6 +10,7 @@ namespace MVCAgropecuaria.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<MVCAgropecuaria.DAL.AgropecuariaContext>
     {
+        int ROW_COUNT = 5;
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -31,7 +32,7 @@ namespace MVCAgropecuaria.Migrations
         }
         public void SeedPersonas(MVCAgropecuaria.DAL.AgropecuariaContext context)
         {
-            int ROW_COUNT = 200;
+            int ROW_COUNT = 5;
             var testPersonas = new Faker<Persona>()
                 .RuleFor(p => p.ID, f => f.IndexFaker)
                 .RuleFor(p => p.Nombres, f => f.Name.FirstName(Bogus.DataSets.Name.Gender.Male))
@@ -118,7 +119,7 @@ namespace MVCAgropecuaria.Migrations
                 .RuleFor(p => p.Persona, f => f.PickRandomParam(context.Personas.ToArray()))
                 .RuleFor(p => p.Rol, f => f.PickRandomParam(context.Rols.ToArray()));
 
-            var Usuarios = testUsuarios.Generate(200);
+            var Usuarios = testUsuarios.Generate(2);
             Usuarios.ForEach(s => context.Usuarios.Add(s));
             context.SaveChanges();
         }

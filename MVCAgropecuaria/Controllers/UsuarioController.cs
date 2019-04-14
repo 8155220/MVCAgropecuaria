@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,19 +7,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVCAgropecuaria.BusinessLogicLayer;
 using MVCAgropecuaria.DAL;
 using MVCAgropecuaria.Models;
+using MVCAgropecuaria.Responses;
 
 namespace MVCAgropecuaria.Controllers
 {
     public class UsuarioController : Controller
     {
         private AgropecuariaContext db = new AgropecuariaContext();
-
+        private UsuarioBusinessLogic businessLogic;
+        protected Response responseHttp ;
         // GET: Usuario
+        public UsuarioController() : base()
+        {
+            businessLogic = new UsuarioBusinessLogic();
+            responseHttp = new Response();
+        }
         public ActionResult Index()
         {
-            return View(db.Usuarios.ToList());
+            return View(businessLogic.GetAllHabilitados().Data);
         }
 
         // GET: Usuario/Details/5
@@ -39,6 +48,9 @@ namespace MVCAgropecuaria.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
+            var listaUsuarios = (IList) businessLogic.GetPersonasDisponibles().Data;
+            ViewBag.Personas = new SelectList(listaUsuarios, "ID", "Nombres");
+            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");   
             return View();
         }
 
@@ -47,21 +59,40 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserName,Password,Habilitado,FechaRegistro,FechaModificacion,PersonaRegistroID,PersonaModificoID")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "ID,UserName,Password,PersonaID,RolID")] Usuario usuario)
         {
-            if (ModelState.IsValid)
-            {
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            var listaUsuarios = (IList)businessLogic.GetPersonasDisponibles().Data;
+            ViewBag.Personas = new SelectList(listaUsuarios, "ID", "Nombres");
+            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");
+            try {
+                if (ModelState.IsValid)
+                {
+                    var tmpAdicionarRespustaHttp = businessLogic.Create(usuario);
+                    if (tmpAdicionarRespustaHttp.Error)
+                    {
+                        ModelState.AddModelError("", tmpAdicionarRespustaHttp.Message);
+                    }else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                    
             }
-
+            catch (DataException) {
+                {
+                    ModelState.AddModelError("", "Ocurrio un error, intente mas tarde");
+                }
+            }
             return View(usuario);
         }
 
         // GET: Usuario/Edit/5
         public ActionResult Edit(int? id)
         {
+            var listaUsuarios = (IList)businessLogic.GetPersonasDisponibles().Data;
+            ViewBag.Personas = new SelectList(listaUsuarios, "ID", "Nombres");
+            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -79,13 +110,24 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserName,Password,Habilitado,FechaRegistro,FechaModificacion,PersonaRegistroID,PersonaModificoID")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "ID,UserName,Password,Habilitado,PersonaID,RolID")] Usuario usuario)
         {
+            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
+                var tmpAdicionarRespustaHttp = businessLogic.Edit(usuario);
+                if (tmpAdicionarRespustaHttp.Error)
+                {
+                    ModelState.AddModelError("", tmpAdicionarRespustaHttp.Message);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+
+                /*db.Entry(usuario).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");*/
             }
             return View(usuario);
         }

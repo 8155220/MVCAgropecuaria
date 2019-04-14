@@ -16,10 +16,13 @@ namespace MVCAgropecuaria.Models
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaModificacion { get; set; }
 
-        //[ForeignKey("Persona")]
-        public Persona Persona{get;set;}
-        //[ForeignKey("Rol")]
-        public Rol Rol { get; set; }
+        public int PersonaID { get; set; }
+        public int RolID { get; set; }
+
+        [ForeignKey("PersonaID")]
+        public virtual Persona Persona{get;set;}
+        [ForeignKey("RolID")]
+        public virtual Rol Rol { get; set; }
 
         public int? PersonaRegistroID { get; set; }
         public int? PersonaModificoID { get; set; }
