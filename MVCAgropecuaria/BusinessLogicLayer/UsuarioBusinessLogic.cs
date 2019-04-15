@@ -99,6 +99,18 @@ namespace MVCAgropecuaria.BusinessLogicLayer
 
             return responseModel;
         }
+        public Response Delete(int id)
+        {
+            responseModel.Error = true;
+            using (var db = new AgropecuariaContext())
+            {
+                Usuario usuario = db.Usuarios.Find(id);
+                usuario.Habilitado = false;
+                db.SaveChanges();
+                responseModel.Error = false;
+            }
+            return responseModel;
+        }
 
         public static Usuario MapeoBdToEntity(Usuario UsuarioBd)
         {

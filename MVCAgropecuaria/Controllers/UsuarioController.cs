@@ -27,11 +27,6 @@ namespace MVCAgropecuaria.Controllers
         }
         public ActionResult Index(string searchString)
         {
-           /* var listaUsuarios = (IList) businessLogic.GetAllHabilitados().Data;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                listaUsuarios = listaUsuarios.Where()
-            }*/
             return View(businessLogic.GetAllHabilitados(searchString).Data);
         }
 
@@ -153,9 +148,7 @@ namespace MVCAgropecuaria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            db.Usuarios.Remove(usuario);
-            db.SaveChanges();
+            businessLogic.Delete(id);
             return RedirectToAction("Index");
         }
 

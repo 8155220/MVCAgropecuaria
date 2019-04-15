@@ -71,7 +71,18 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             return responseModel;
 
         }
-
+        public Response Delete(int id)
+        {
+            responseModel.Error = true;
+            using (var db = new AgropecuariaContext())
+            {
+                Cargo cargo = db.Cargos.Find(id);
+                cargo.Habilitado = false;
+                db.SaveChanges();
+                responseModel.Error = false;
+            }
+            return responseModel;
+        }
         public Response GetAllHabilitados(string queryString)
         {
             responseModel.Data = new List<Cargo>();

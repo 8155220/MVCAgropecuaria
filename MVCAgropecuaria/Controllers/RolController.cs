@@ -140,9 +140,7 @@ namespace MVCAgropecuaria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Rol rol = db.Rols.Find(id);
-            db.Rols.Remove(rol);
-            db.SaveChanges();
+            businessLogic.Delete(id);
             return RedirectToAction("Index");
         }
 

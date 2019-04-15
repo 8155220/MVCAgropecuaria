@@ -140,19 +140,8 @@ namespace MVCAgropecuaria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cargo cargo = db.Cargos.Find(id);
-            try
-            { 
-                db.Cargos.Remove(cargo);
-                db.SaveChanges();
+            businessLogic.Delete(id);
 
-            }
-            catch (DataException)
-            {
-                    
-            }
-
-            
             return RedirectToAction("Index");
         }
 
