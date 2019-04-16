@@ -71,7 +71,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             using (var db = new AgropecuariaContext())
             {
                 var listaUsuarios = db.Usuarios
-                    .Include("Roles")
+                    .Include("Rol")
                     .Where(usuario => usuario.Habilitado == true )
                     .Select(MapeoBdToEntity)
                     ;

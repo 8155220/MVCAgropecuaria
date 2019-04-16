@@ -46,16 +46,18 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             using (var db = new AgropecuariaContext())
             {
                 var entity = db.Rols.Find(newEntity.Id);
-                var entityYaRegistrado = db.Rols.FirstOrDefault(p => p.Descripcion == entity.Descripcion) != null ? true : false;
+                var entityYaRegistrado = db.Rols.FirstOrDefault(p => p.Descripcion == newEntity.Descripcion) != null ? true : false;
                
                 if (entity != null)
                 {
-                    if (entityYaRegistrado)
+                    if (entityYaRegistrado && entity.Descripcion != newEntity.Descripcion)
                     {
                         responseModel.Error = true;
                         responseModel.Message = "Ya existe un Roles con la misma Descripcion";
-                    }else
+                    }
+                    else
                     {
+                        entity.Descripcion = newEntity.Descripcion;
                         entity.Habilitado = newEntity.Habilitado;
                         entity.FechaModificacion = DateTime.Now;
                         entity.IdPerMod = SessionHelper.CURRENT_PERSON_ID;

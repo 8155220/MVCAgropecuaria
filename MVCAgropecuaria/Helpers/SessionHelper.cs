@@ -7,6 +7,6 @@ namespace MVCAgropecuaria.Helpers
 {
     public class SessionHelper
     {
-        public static int CURRENT_PERSON_ID;
+        public static int CURRENT_PERSON_ID=1;
     }
 }
