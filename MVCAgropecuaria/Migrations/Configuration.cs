@@ -28,7 +28,7 @@ namespace MVCAgropecuaria.Migrations
             SeedPersonas(context);
             SeedUsuarios(context);
 
-            
+
         }
         public void SeedPersonas(MVCAgropecuaria.DAL.AgropecuariaContext context)
         {
@@ -59,20 +59,20 @@ namespace MVCAgropecuaria.Migrations
 
         public void SeedRoles(MVCAgropecuaria.DAL.AgropecuariaContext context)
         {
-            var roles = new List<Rol>
+            var roles = new List<Roles>
             {
-                new Rol{Id=1
+                new Roles{Id=1
                     ,Descripcion="Administrador"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Rol{Id=1, Descripcion="Invitado"
+                new Roles{Id=1, Descripcion="Invitado"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Rol{Id=1, Descripcion="Creador de Recursos"
+                new Roles{Id=1, Descripcion="Creador de Recursos"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
@@ -84,20 +84,20 @@ namespace MVCAgropecuaria.Migrations
         }
         public void SeedCargos(MVCAgropecuaria.DAL.AgropecuariaContext context)
         {
-            var Cargos = new List<Cargo>
+            var Cargos = new List<Cargos>
             {
-                new Cargo{Id=1
+                new Cargos{Id=1
                     ,Descripcion="Gerente"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Cargo{Id=1, Descripcion="CEO"
+                new Cargos{Id=1, Descripcion="CEO"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Cargo{Id=1, Descripcion="Adm Recursos Humanos"
+                new Cargos{Id=1, Descripcion="Adm Recursos Humanos"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
@@ -109,7 +109,7 @@ namespace MVCAgropecuaria.Migrations
         }
         public void SeedUsuarios(MVCAgropecuaria.DAL.AgropecuariaContext context)
         {
-            var testUsuarios = new Faker<Usuario>()
+            var testUsuarios = new Faker<Usuarios>()
                 .RuleFor(p => p.Id, f => f.IndexFaker)
                 .RuleFor(p => p.UserName, f => f.Name.FirstName(Bogus.DataSets.Name.Gender.Male))
                 .RuleFor(p => p.Password, (f, p) => f.Internet.Password())

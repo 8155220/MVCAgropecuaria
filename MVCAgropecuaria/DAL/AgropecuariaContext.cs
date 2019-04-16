@@ -13,9 +13,9 @@ namespace MVCAgropecuaria.DAL
         public AgropecuariaContext() : base("AgropecuariaContext"){}
 
         public DbSet<Persona> Personas { set; get; }
-        public DbSet<Rol> Rols { set; get; }
-        public DbSet<Cargo> Cargos { set; get; }
-        public DbSet<Usuario> Usuarios { set; get; }
+        public DbSet<Roles> Rols { set; get; }
+        public DbSet<Cargos> Cargos { set; get; }
+        public DbSet<Usuarios> Usuarios { set; get; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

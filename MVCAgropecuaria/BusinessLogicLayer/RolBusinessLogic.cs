@@ -13,7 +13,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
     public class RolBusinessLogic : BaseBusinessLogic
     {
         
-        public Response Create(Rol entity)
+        public Response Create(Roles entity)
         {
             using (var db = new AgropecuariaContext())
             {
@@ -35,13 +35,13 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                 else
                 {
                     responseModel.Error = true;
-                    responseModel.Message = "Ya existe un Rol con la misma Descripcion";
+                    responseModel.Message = "Ya existe un Roles con la misma Descripcion";
                 }
 
             }
             return responseModel;
         }
-        public Response Edit(Rol newEntity)
+        public Response Edit(Roles newEntity)
         {
             using (var db = new AgropecuariaContext())
             {
@@ -53,7 +53,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                     if (entityYaRegistrado)
                     {
                         responseModel.Error = true;
-                        responseModel.Message = "Ya existe un Rol con la misma Descripcion";
+                        responseModel.Message = "Ya existe un Roles con la misma Descripcion";
                     }else
                     {
                         entity.Habilitado = newEntity.Habilitado;
@@ -79,7 +79,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             responseModel.Error = true;
             using (var db = new AgropecuariaContext())
             {
-                Rol rol = db.Rols.Find(id);
+                Roles rol = db.Rols.Find(id);
                 rol.Habilitado = false;
                 db.SaveChanges();
                 responseModel.Error = false;
@@ -88,7 +88,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         }
         public Response GetAllHabilitados(string queryString)
         {
-            responseModel.Data = new List<Rol>();
+            responseModel.Data = new List<Roles>();
             using (var db = new AgropecuariaContext())
             {
                 var lista = db.Rols
@@ -107,9 +107,9 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         }
 
 
-        public static Rol MapeoBdToEntity(Rol RolBd)
+        public static Roles MapeoBdToEntity(Roles RolBd)
         {
-            return new Rol
+            return new Roles
             {
                 Id = RolBd.Id,
                 Descripcion = RolBd.Descripcion?.Trim(),

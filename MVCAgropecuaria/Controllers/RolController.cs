@@ -18,7 +18,7 @@ namespace MVCAgropecuaria.Controllers
         private AgropecuariaContext db = new AgropecuariaContext();
         private RolBusinessLogic businessLogic;
         protected Response responseHttp;
-        // GET: Rol
+        // GET: Roles
         public RolController() : base()
         {
             businessLogic = new RolBusinessLogic();
@@ -29,14 +29,14 @@ namespace MVCAgropecuaria.Controllers
             return View(businessLogic.GetAllHabilitados(searchString).Data);
         }
 
-        // GET: Rol/Details/5
+        // GET: Roles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rol rol = db.Rols.Find(id);
+            Roles rol = db.Rols.Find(id);
             if (rol == null)
             {
                 return HttpNotFound();
@@ -44,18 +44,18 @@ namespace MVCAgropecuaria.Controllers
             return View(rol);
         }
 
-        // GET: Rol/Create
+        // GET: Roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rol/Create
+        // POST: Roles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Descripcion")] Rol rol)
+        public ActionResult Create([Bind(Include = "Descripcion")] Roles rol)
         {
             try
             {
@@ -83,14 +83,14 @@ namespace MVCAgropecuaria.Controllers
             return View(rol);
         }
 
-        // GET: Rol/Edit/5
+        // GET: Roles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rol rol = db.Rols.Find(id);
+            Roles rol = db.Rols.Find(id);
             if (rol == null)
             {
                 return HttpNotFound();
@@ -98,12 +98,12 @@ namespace MVCAgropecuaria.Controllers
             return View(rol);
         }
 
-        // POST: Rol/Edit/5
+        // POST: Roles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Habilitado")] Rol rol)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Habilitado")] Roles rol)
         {
             if (ModelState.IsValid)
             {
@@ -120,14 +120,14 @@ namespace MVCAgropecuaria.Controllers
             return View(rol);
         }
 
-        // GET: Rol/Delete/5
+        // GET: Roles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rol rol = db.Rols.Find(id);
+            Roles rol = db.Rols.Find(id);
             if (rol == null)
             {
                 return HttpNotFound();
@@ -135,7 +135,7 @@ namespace MVCAgropecuaria.Controllers
             return View(rol);
         }
 
-        // POST: Rol/Delete/5
+        // POST: Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

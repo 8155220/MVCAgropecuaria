@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MVCAgropecuaria.Models
 {
-    public class Cargo
+    public class Cargos
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

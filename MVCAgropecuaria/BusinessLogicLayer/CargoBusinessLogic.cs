@@ -11,7 +11,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
 {
     public class CargoBusinessLogic : BaseBusinessLogic
     {
-        public Response Create(Cargo entity)
+        public Response Create(Cargos entity)
         {
             using (var db = new AgropecuariaContext())
             {
@@ -31,13 +31,13 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                 else
                 {
                     responseModel.Error = true;
-                    responseModel.Message = "Ya existe un Cargo con la misma Descripcion";
+                    responseModel.Message = "Ya existe un Cargos con la misma Descripcion";
                 }
 
             }
             return responseModel;
         }
-        public Response Edit(Cargo newEntity)
+        public Response Edit(Cargos newEntity)
         {
             using (var db = new AgropecuariaContext())
             {
@@ -49,7 +49,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                     if (entityYaRegistrado)
                     {
                         responseModel.Error = true;
-                        responseModel.Message = "Ya existe un Cargo con la misma Descripcion";
+                        responseModel.Message = "Ya existe un Cargos con la misma Descripcion";
                     }
                     else
                     {
@@ -76,7 +76,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             responseModel.Error = true;
             using (var db = new AgropecuariaContext())
             {
-                Cargo cargo = db.Cargos.Find(id);
+                Cargos cargo = db.Cargos.Find(id);
                 cargo.Habilitado = false;
                 db.SaveChanges();
                 responseModel.Error = false;
@@ -85,7 +85,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         }
         public Response GetAllHabilitados(string queryString)
         {
-            responseModel.Data = new List<Cargo>();
+            responseModel.Data = new List<Cargos>();
             using (var db = new AgropecuariaContext())
             {
                 var lista = db.Cargos
@@ -104,9 +104,9 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         }
 
 
-        public static Cargo MapeoBdToEntity(Cargo RolBd)
+        public static Cargos MapeoBdToEntity(Cargos RolBd)
         {
-            return new Cargo
+            return new Cargos
             {
                 Id = RolBd.Id,
                 Descripcion = RolBd.Descripcion?.Trim(),

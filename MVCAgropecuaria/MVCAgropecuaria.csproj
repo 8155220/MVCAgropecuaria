@@ -167,13 +167,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SessionHelper.cs" />
-    <Compile Include="Migrations\201904160152538_Initial-Create.cs" />
-    <Compile Include="Migrations\201904160152538_Initial-Create.Designer.cs">
-      <DependentUpon>201904160152538_Initial-Create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904160155099_agro1.cs" />
-    <Compile Include="Migrations\201904160155099_agro1.Designer.cs">
-      <DependentUpon>201904160155099_agro1.cs</DependentUpon>
+    <Compile Include="Migrations\201904160208164_Initial-Create.cs" />
+    <Compile Include="Migrations\201904160208164_Initial-Create.Designer.cs">
+      <DependentUpon>201904160208164_Initial-Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cargo.cs" />
@@ -258,11 +254,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904160152538_Initial-Create.resx">
-      <DependentUpon>201904160152538_Initial-Create.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904160155099_agro1.resx">
-      <DependentUpon>201904160155099_agro1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904160208164_Initial-Create.resx">
+      <DependentUpon>201904160208164_Initial-Create.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

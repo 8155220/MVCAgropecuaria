@@ -23,20 +23,20 @@ namespace MVCAgropecuaria.Controllers
             businessLogic = new CargoBusinessLogic();
             responseHttp = new Response();
         }
-        // GET: Cargo
+        // GET: Cargos
         public ActionResult Index(string searchString)
         {
             return View(businessLogic.GetAllHabilitados(searchString).Data);
         }
 
-        // GET: Cargo/Details/5
+        // GET: Cargos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargo cargo = db.Cargos.Find(id);
+            Cargos cargo = db.Cargos.Find(id);
             if (cargo == null)
             {
                 return HttpNotFound();
@@ -44,18 +44,18 @@ namespace MVCAgropecuaria.Controllers
             return View(cargo);
         }
 
-        // GET: Cargo/Create
+        // GET: Cargos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cargo/Create
+        // POST: Cargos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Habilitado,FechaRegistro,FechaModificacion,IdPerReg,IdPerMod")] Cargo cargo)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Habilitado,FechaRegistro,FechaModificacion,IdPerReg,IdPerMod")] Cargos cargo)
         {
             try
             {
@@ -83,14 +83,14 @@ namespace MVCAgropecuaria.Controllers
             return View(cargo);
         }
 
-        // GET: Cargo/Edit/5
+        // GET: Cargos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargo cargo = db.Cargos.Find(id);
+            Cargos cargo = db.Cargos.Find(id);
             if (cargo == null)
             {
                 return HttpNotFound();
@@ -98,12 +98,12 @@ namespace MVCAgropecuaria.Controllers
             return View(cargo);
         }
 
-        // POST: Cargo/Edit/5
+        // POST: Cargos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Habilitado,FechaRegistro,FechaModificacion,IdPerReg,IdPerMod")] Cargo cargo)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Habilitado,FechaRegistro,FechaModificacion,IdPerReg,IdPerMod")] Cargos cargo)
         {
             if (ModelState.IsValid)
             {
@@ -120,14 +120,14 @@ namespace MVCAgropecuaria.Controllers
             return View(cargo);
         }
 
-        // GET: Cargo/Delete/5
+        // GET: Cargos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargo cargo = db.Cargos.Find(id);
+            Cargos cargo = db.Cargos.Find(id);
             if (cargo == null)
             {
                 return HttpNotFound();
@@ -135,7 +135,7 @@ namespace MVCAgropecuaria.Controllers
             return View(cargo);
         }
 
-        // POST: Cargo/Delete/5
+        // POST: Cargos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

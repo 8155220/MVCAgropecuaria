@@ -8,7 +8,7 @@ namespace MVCAgropecuaria.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Cargo",
+                "dbo.Cargos",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -49,7 +49,7 @@ namespace MVCAgropecuaria.Migrations
                         Cargo_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Cargo", t => t.Cargo_Id)
+                .ForeignKey("dbo.Cargos", t => t.Cargo_Id)
                 .ForeignKey("dbo.Persona", t => t.IdPerMod)
                 .ForeignKey("dbo.Persona", t => t.IdPerReg)
                 .Index(t => t.IdPerReg)
@@ -57,21 +57,25 @@ namespace MVCAgropecuaria.Migrations
                 .Index(t => t.Cargo_Id);
             
             CreateTable(
-                "dbo.Rol",
+                "dbo.Roles",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Descripcion = c.String(),
                         Habilitado = c.Boolean(nullable: false),
                         FechaRegistro = c.DateTime(nullable: false),
                         FechaModificacion = c.DateTime(nullable: false),
-                        PersonaRegistroID = c.Int(),
-                        PersonaModificoID = c.Int(),
+                        IdPerReg = c.Int(),
+                        IdPerMod = c.Int(),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Persona", t => t.IdPerMod)
+                .ForeignKey("dbo.Persona", t => t.IdPerReg)
+                .Index(t => t.IdPerReg)
+                .Index(t => t.IdPerMod);
             
             CreateTable(
-                "dbo.Usuario",
+                "dbo.Usuarios",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -87,7 +91,7 @@ namespace MVCAgropecuaria.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Persona", t => t.IdPersona, cascadeDelete: true)
-                .ForeignKey("dbo.Rol", t => t.IdRol, cascadeDelete: true)
+                .ForeignKey("dbo.Roles", t => t.IdRol, cascadeDelete: true)
                 .Index(t => t.IdPersona)
                 .Index(t => t.IdRol);
             
@@ -95,24 +99,28 @@ namespace MVCAgropecuaria.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Usuario", "IdRol", "dbo.Rol");
-            DropForeignKey("dbo.Usuario", "IdPersona", "dbo.Persona");
-            DropForeignKey("dbo.Cargo", "IdPerReg", "dbo.Persona");
-            DropForeignKey("dbo.Cargo", "IdPerMod", "dbo.Persona");
+            DropForeignKey("dbo.Usuarios", "IdRol", "dbo.Roles");
+            DropForeignKey("dbo.Usuarios", "IdPersona", "dbo.Persona");
+            DropForeignKey("dbo.Roles", "IdPerReg", "dbo.Persona");
+            DropForeignKey("dbo.Roles", "IdPerMod", "dbo.Persona");
+            DropForeignKey("dbo.Cargos", "IdPerReg", "dbo.Persona");
+            DropForeignKey("dbo.Cargos", "IdPerMod", "dbo.Persona");
             DropForeignKey("dbo.Persona", "IdPerReg", "dbo.Persona");
             DropForeignKey("dbo.Persona", "IdPerMod", "dbo.Persona");
-            DropForeignKey("dbo.Persona", "Cargo_Id", "dbo.Cargo");
-            DropIndex("dbo.Usuario", new[] { "IdRol" });
-            DropIndex("dbo.Usuario", new[] { "IdPersona" });
+            DropForeignKey("dbo.Persona", "Cargo_Id", "dbo.Cargos");
+            DropIndex("dbo.Usuarios", new[] { "IdRol" });
+            DropIndex("dbo.Usuarios", new[] { "IdPersona" });
+            DropIndex("dbo.Roles", new[] { "IdPerMod" });
+            DropIndex("dbo.Roles", new[] { "IdPerReg" });
             DropIndex("dbo.Persona", new[] { "Cargo_Id" });
             DropIndex("dbo.Persona", new[] { "IdPerMod" });
             DropIndex("dbo.Persona", new[] { "IdPerReg" });
-            DropIndex("dbo.Cargo", new[] { "IdPerMod" });
-            DropIndex("dbo.Cargo", new[] { "IdPerReg" });
-            DropTable("dbo.Usuario");
-            DropTable("dbo.Rol");
+            DropIndex("dbo.Cargos", new[] { "IdPerMod" });
+            DropIndex("dbo.Cargos", new[] { "IdPerReg" });
+            DropTable("dbo.Usuarios");
+            DropTable("dbo.Roles");
             DropTable("dbo.Persona");
-            DropTable("dbo.Cargo");
+            DropTable("dbo.Cargos");
         }
     }
 }

@@ -28,7 +28,7 @@ namespace MVCAgropecuaria.Models
         public int? IdPerReg { get; set; }
         public int? IdPerMod { get; set; }
         //Navigation Property
-        public virtual Cargo Cargo { get; set; }
+        public virtual Cargos Cargo { get; set; }
         [ForeignKey("IdPerReg")]
         public virtual Persona PersonaRegistro { get; set; }
         //[ForeignKey("IdPerMod")]

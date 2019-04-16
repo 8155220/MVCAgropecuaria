@@ -12,7 +12,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
 {
     public class UsuarioBusinessLogic : BaseBusinessLogic
     {
-        public Response Create(Usuario dataUsuario)
+        public Response Create(Usuarios dataUsuario)
         {
             using (var db = new AgropecuariaContext())
             {
@@ -31,13 +31,13 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                 }else 
                 {
                     responseModel.Error = true;
-                    responseModel.Message = "Ya existe registro de usuario con el mismo Nombre de Usuario";
+                    responseModel.Message = "Ya existe registro de usuario con el mismo Nombre de Usuarios";
                 }
 
             }
             return responseModel;
         }
-        public Response Edit(Usuario dataUsuario)
+        public Response Edit(Usuarios dataUsuario)
         {
             using (var db = new AgropecuariaContext())
             {
@@ -67,11 +67,11 @@ namespace MVCAgropecuaria.BusinessLogicLayer
 
         public Response GetAllHabilitados(string userName)
         {
-            responseModel.Data = new List<Usuario>();
+            responseModel.Data = new List<Usuarios>();
             using (var db = new AgropecuariaContext())
             {
                 var listaUsuarios = db.Usuarios
-                    .Include("Rol")
+                    .Include("Roles")
                     .Where(usuario => usuario.Habilitado == true )
                     .Select(MapeoBdToEntity)
                     ;
@@ -104,7 +104,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             responseModel.Error = true;
             using (var db = new AgropecuariaContext())
             {
-                Usuario usuario = db.Usuarios.Find(id);
+                Usuarios usuario = db.Usuarios.Find(id);
                 usuario.Habilitado = false;
                 db.SaveChanges();
                 responseModel.Error = false;
@@ -112,9 +112,9 @@ namespace MVCAgropecuaria.BusinessLogicLayer
             return responseModel;
         }
 
-        public static Usuario MapeoBdToEntity(Usuario UsuarioBd)
+        public static Usuarios MapeoBdToEntity(Usuarios UsuarioBd)
         {
-            return new Usuario
+            return new Usuarios
             {
                 Id = UsuarioBd.Id,
                 UserName = UsuarioBd.UserName?.Trim(),

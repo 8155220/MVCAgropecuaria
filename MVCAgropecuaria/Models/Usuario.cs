@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MVCAgropecuaria.Models
 {
-    public class Usuario
+    public class Usuarios
     {
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -22,7 +22,7 @@ namespace MVCAgropecuaria.Models
         [ForeignKey("IdPersona")]
         public virtual Persona Persona{get;set;}
         [ForeignKey("IdRol")]
-        public virtual Rol Rol { get; set; }
+        public virtual Roles Rol { get; set; }
 
         public int? IdPerReg { get; set; }
         public int? IdPerMod { get; set; }
