@@ -23,8 +23,8 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                     dataUsuario.Habilitado = true;
                     dataUsuario.FechaRegistro = DateTime.Now;
                     dataUsuario.FechaModificacion = DateTime.Now;
-                    dataUsuario.PersonaModificoID = SessionHelper.CURRENT_PERSON_ID;
-                    dataUsuario.PersonaRegistroID = SessionHelper.CURRENT_PERSON_ID;
+                    dataUsuario.IdPerMod = SessionHelper.CURRENT_PERSON_ID;
+                    dataUsuario.IdPerReg = SessionHelper.CURRENT_PERSON_ID;
                     db.Usuarios.Add(dataUsuario);
                     db.SaveChanges();
                     responseModel.Error = false;
@@ -41,16 +41,16 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         {
             using (var db = new AgropecuariaContext())
             {
-                var usuario = db.Usuarios.Find(dataUsuario.ID);
+                var usuario = db.Usuarios.Find(dataUsuario.Id);
 
                 if (usuario!=null)
                 {
                     usuario.Habilitado = dataUsuario.Habilitado;
                     usuario.Password = dataUsuario.Password;
-                    usuario.RolID = dataUsuario.RolID;
+                    usuario.IdRol = dataUsuario.IdRol;
                     usuario.FechaModificacion = DateTime.Now;
-                    usuario.PersonaModificoID = SessionHelper.CURRENT_PERSON_ID;
-                    usuario.PersonaRegistroID = SessionHelper.CURRENT_PERSON_ID;
+                    usuario.IdPerMod = SessionHelper.CURRENT_PERSON_ID;
+                    usuario.IdPerReg = SessionHelper.CURRENT_PERSON_ID;
                     db.SaveChanges();
                     responseModel.Error = false;
                 }
@@ -91,8 +91,8 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         {
             responseModel.Data = new List<Persona>();
             using (var db = new AgropecuariaContext()) {
-                var usuariosId = db.Usuarios.Select(u => u.PersonaID);
-                var personas = db.Personas.Where(p => !usuariosId.Contains(p.ID)).ToList();
+                var usuariosId = db.Usuarios.Select(u => u.IdPersona);
+                var personas = db.Personas.Where(p => !usuariosId.Contains(p.Id)).ToList();
                 responseModel.Data = personas;
                 responseModel.Error = false;
             }
@@ -116,7 +116,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         {
             return new Usuario
             {
-                ID = UsuarioBd.ID,
+                Id = UsuarioBd.Id,
                 UserName = UsuarioBd.UserName?.Trim(),
                 Password = UsuarioBd.Password,
                 Rol = UsuarioBd.Rol

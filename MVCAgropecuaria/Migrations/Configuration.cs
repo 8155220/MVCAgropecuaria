@@ -34,7 +34,7 @@ namespace MVCAgropecuaria.Migrations
         {
             int ROW_COUNT = 5;
             var testPersonas = new Faker<Persona>()
-                .RuleFor(p => p.ID, f => f.IndexFaker)
+                .RuleFor(p => p.Id, f => f.IndexFaker)
                 .RuleFor(p => p.Nombres, f => f.Name.FirstName(Bogus.DataSets.Name.Gender.Male))
                 .RuleFor(p => p.Apellidos, (f, p) => f.Name.LastName(Bogus.DataSets.Name.Gender.Male))
                 .RuleFor(p => p.Sexo, f => f.PickRandomParam(new string[] { "masculino", "femenino" }))
@@ -49,8 +49,8 @@ namespace MVCAgropecuaria.Migrations
                 .RuleFor(p => p.TelefonoReferencia, f => f.Phone.PhoneNumber().ToString())
                 .RuleFor(p => p.Domicilio, f => f.Address.FullAddress())
                 .RuleFor(p => p.IdParentesco, f => f.Random.Number(ROW_COUNT))
-                //.RuleFor(p => p.PersonaRegistroID, f => f.Random.Number(ROW_COUNT))
-                //.RuleFor(p => p.PersonaModificoID, f => f.Random.Number(ROW_COUNT))
+                //.RuleFor(p => p.IdPerReg, f => f.Random.Number(ROW_COUNT))
+                //.RuleFor(p => p.IdPerMod, f => f.Random.Number(ROW_COUNT))
                 .RuleFor(p => p.PersonaReferencia, f => f.Name.FirstName(Bogus.DataSets.Name.Gender.Male));
             var Personas = testPersonas.Generate(ROW_COUNT);
             Personas.ForEach(s => context.Personas.Add(s));
@@ -61,18 +61,18 @@ namespace MVCAgropecuaria.Migrations
         {
             var roles = new List<Rol>
             {
-                new Rol{ID=1
+                new Rol{Id=1
                     ,Descripcion="Administrador"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Rol{ID=1, Descripcion="Invitado"
+                new Rol{Id=1, Descripcion="Invitado"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Rol{ID=1, Descripcion="Creador de Recursos"
+                new Rol{Id=1, Descripcion="Creador de Recursos"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
@@ -86,18 +86,18 @@ namespace MVCAgropecuaria.Migrations
         {
             var Cargos = new List<Cargo>
             {
-                new Cargo{ID=1
+                new Cargo{Id=1
                     ,Descripcion="Gerente"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Cargo{ID=1, Descripcion="CEO"
+                new Cargo{Id=1, Descripcion="CEO"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
                 },
-                new Cargo{ID=1, Descripcion="Adm Recursos Humanos"
+                new Cargo{Id=1, Descripcion="Adm Recursos Humanos"
                     ,Habilitado=true
                     ,FechaRegistro =DateTime.Parse("2005-09-01")
                     ,FechaModificacion =DateTime.Parse("2005-09-01")
@@ -110,7 +110,7 @@ namespace MVCAgropecuaria.Migrations
         public void SeedUsuarios(MVCAgropecuaria.DAL.AgropecuariaContext context)
         {
             var testUsuarios = new Faker<Usuario>()
-                .RuleFor(p => p.ID, f => f.IndexFaker)
+                .RuleFor(p => p.Id, f => f.IndexFaker)
                 .RuleFor(p => p.UserName, f => f.Name.FirstName(Bogus.DataSets.Name.Gender.Male))
                 .RuleFor(p => p.Password, (f, p) => f.Internet.Password())
                 .RuleFor(p => p.FechaModificacion, f => f.Date.Future())

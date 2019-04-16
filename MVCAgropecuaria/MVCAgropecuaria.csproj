@@ -167,29 +167,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SessionHelper.cs" />
-    <Compile Include="Migrations\201904131752342_InitialCreate.cs" />
-    <Compile Include="Migrations\201904131752342_InitialCreate.Designer.cs">
-      <DependentUpon>201904131752342_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201904160152538_Initial-Create.cs" />
+    <Compile Include="Migrations\201904160152538_Initial-Create.Designer.cs">
+      <DependentUpon>201904160152538_Initial-Create.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904131859331_agro1.cs" />
-    <Compile Include="Migrations\201904131859331_agro1.Designer.cs">
-      <DependentUpon>201904131859331_agro1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904131900576_agro2.cs" />
-    <Compile Include="Migrations\201904131900576_agro2.Designer.cs">
-      <DependentUpon>201904131900576_agro2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904131902107_agro3.cs" />
-    <Compile Include="Migrations\201904131902107_agro3.Designer.cs">
-      <DependentUpon>201904131902107_agro3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904141443256_agro4.cs" />
-    <Compile Include="Migrations\201904141443256_agro4.Designer.cs">
-      <DependentUpon>201904141443256_agro4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904141537190_agro5.cs" />
-    <Compile Include="Migrations\201904141537190_agro5.Designer.cs">
-      <DependentUpon>201904141537190_agro5.cs</DependentUpon>
+    <Compile Include="Migrations\201904160155099_agro1.cs" />
+    <Compile Include="Migrations\201904160155099_agro1.Designer.cs">
+      <DependentUpon>201904160155099_agro1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cargo.cs" />
@@ -274,23 +258,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904131752342_InitialCreate.resx">
-      <DependentUpon>201904131752342_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904160152538_Initial-Create.resx">
+      <DependentUpon>201904160152538_Initial-Create.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904131859331_agro1.resx">
-      <DependentUpon>201904131859331_agro1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904131900576_agro2.resx">
-      <DependentUpon>201904131900576_agro2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904131902107_agro3.resx">
-      <DependentUpon>201904131902107_agro3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141443256_agro4.resx">
-      <DependentUpon>201904141443256_agro4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141537190_agro5.resx">
-      <DependentUpon>201904141537190_agro5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904160155099_agro1.resx">
+      <DependentUpon>201904160155099_agro1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

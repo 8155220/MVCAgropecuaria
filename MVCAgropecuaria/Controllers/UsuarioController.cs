@@ -49,8 +49,8 @@ namespace MVCAgropecuaria.Controllers
         public ActionResult Create()
         {
             var listaUsuarios = (IList) businessLogic.GetPersonasDisponibles().Data;
-            ViewBag.Personas = new SelectList(listaUsuarios, "ID", "Nombres");
-            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");   
+            ViewBag.Personas = new SelectList(listaUsuarios, "Id", "Nombres");
+            ViewBag.Rols = new SelectList(db.Rols, "Id", "Descripcion");   
             return View();
         }
 
@@ -59,11 +59,11 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserName,Password,PersonaID,RolID")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,UserName,Password,IdPersona,IdRol")] Usuario usuario)
         {
             var listaUsuarios = (IList)businessLogic.GetPersonasDisponibles().Data;
-            ViewBag.Personas = new SelectList(listaUsuarios, "ID", "Nombres");
-            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");
+            ViewBag.Personas = new SelectList(listaUsuarios, "Id", "Nombres");
+            ViewBag.Rols = new SelectList(db.Rols, "Id", "Descripcion");
             try {
                 if (ModelState.IsValid)
                 {
@@ -90,8 +90,8 @@ namespace MVCAgropecuaria.Controllers
         public ActionResult Edit(int? id)
         {
             var listaUsuarios = (IList)businessLogic.GetPersonasDisponibles().Data;
-            ViewBag.Personas = new SelectList(listaUsuarios, "ID", "Nombres");
-            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");
+            ViewBag.Personas = new SelectList(listaUsuarios, "Id", "Nombres");
+            ViewBag.Rols = new SelectList(db.Rols, "Id", "Descripcion");
 
             if (id == null)
             {
@@ -110,9 +110,9 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserName,Password,Habilitado,PersonaID,RolID")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Password,Habilitado,IdPersona,IdRol")] Usuario usuario)
         {
-            ViewBag.Rols = new SelectList(db.Rols, "ID", "Descripcion");
+            ViewBag.Rols = new SelectList(db.Rols, "Id", "Descripcion");
             if (ModelState.IsValid)
             {
                 var tmpAdicionarRespustaHttp = businessLogic.Edit(usuario);

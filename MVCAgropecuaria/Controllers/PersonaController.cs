@@ -40,8 +40,8 @@ namespace MVCAgropecuaria.Controllers
         // GET: Persona/Create
         public ActionResult Create()
         {
-            ViewBag.PersonaModificoID = new SelectList(db.Personas, "ID", "Nombres");
-            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "ID", "Nombres");
+            ViewBag.PersonaModificoID = new SelectList(db.Personas, "Id", "Nombres");
+            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "Id", "Nombres");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nombres,Apellidos,Sexo,CI,FechaNacimiento,FechaIngreso,FechaRegistro,Habilitado,FechaModificacion,Domicilio,Telefonos,PersonaReferencia,IdParentesco,TelefonoReferencia,PersonaRegistroID,PersonaModificoID")] Persona persona)
+        public ActionResult Create([Bind(Include = "Id,Nombres,Apellidos,Sexo,CI,FechaNacimiento,FechaIngreso,FechaRegistro,Habilitado,FechaModificacion,Domicilio,Telefonos,PersonaReferencia,IdParentesco,TelefonoReferencia,IdPerReg,IdPerMod")] Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -59,8 +59,8 @@ namespace MVCAgropecuaria.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PersonaModificoID = new SelectList(db.Personas, "ID", "Nombres", persona.PersonaModificoID);
-            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "ID", "Nombres", persona.PersonaRegistroID);
+            ViewBag.PersonaModificoID = new SelectList(db.Personas, "Id", "Nombres", persona.IdPerMod);
+            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "Id", "Nombres", persona.IdPerReg);
             return View(persona);
         }
 
@@ -76,8 +76,8 @@ namespace MVCAgropecuaria.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PersonaModificoID = new SelectList(db.Personas, "ID", "Nombres", persona.PersonaModificoID);
-            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "ID", "Nombres", persona.PersonaRegistroID);
+            ViewBag.PersonaModificoID = new SelectList(db.Personas, "Id", "Nombres", persona.IdPerMod);
+            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "Id", "Nombres", persona.IdPerReg);
             return View(persona);
         }
 
@@ -86,7 +86,7 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nombres,Apellidos,Sexo,CI,FechaNacimiento,FechaIngreso,FechaRegistro,Habilitado,FechaModificacion,Domicilio,Telefonos,PersonaReferencia,IdParentesco,TelefonoReferencia,PersonaRegistroID,PersonaModificoID")] Persona persona)
+        public ActionResult Edit([Bind(Include = "Id,Nombres,Apellidos,Sexo,CI,FechaNacimiento,FechaIngreso,FechaRegistro,Habilitado,FechaModificacion,Domicilio,Telefonos,PersonaReferencia,IdParentesco,TelefonoReferencia,IdPerReg,IdPerMod")] Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -94,8 +94,8 @@ namespace MVCAgropecuaria.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PersonaModificoID = new SelectList(db.Personas, "ID", "Nombres", persona.PersonaModificoID);
-            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "ID", "Nombres", persona.PersonaRegistroID);
+            ViewBag.PersonaModificoID = new SelectList(db.Personas, "Id", "Nombres", persona.IdPerMod);
+            ViewBag.PersonaRegistroID = new SelectList(db.Personas, "Id", "Nombres", persona.IdPerReg);
             return View(persona);
         }
 

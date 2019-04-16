@@ -13,7 +13,7 @@ namespace MVCAgropecuaria.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201904131859331_agro1"; }
+            get { return "201904160155099_agro1"; }
         }
         
         string IMigrationMetadata.Source

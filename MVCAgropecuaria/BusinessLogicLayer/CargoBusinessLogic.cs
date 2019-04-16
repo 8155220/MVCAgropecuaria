@@ -22,8 +22,8 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                     entity.Habilitado = true;
                     entity.FechaRegistro = DateTime.Now;
                     entity.FechaModificacion = DateTime.Now;
-                    entity.PersonaModificoID = SessionHelper.CURRENT_PERSON_ID;
-                    entity.PersonaRegistroID = SessionHelper.CURRENT_PERSON_ID;
+                    entity.IdPerMod = SessionHelper.CURRENT_PERSON_ID;
+                    entity.IdPerReg = SessionHelper.CURRENT_PERSON_ID;
                     db.Cargos.Add(entity);
                     db.SaveChanges();
                     responseModel.Error = false;
@@ -41,7 +41,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         {
             using (var db = new AgropecuariaContext())
             {
-                var entity = db.Rols.Find(newEntity.ID);
+                var entity = db.Rols.Find(newEntity.Id);
                 var entityYaRegistrado = db.Rols.FirstOrDefault(p => p.Descripcion == entity.Descripcion) != null ? true : false;
 
                 if (entity != null)
@@ -55,8 +55,8 @@ namespace MVCAgropecuaria.BusinessLogicLayer
                     {
                         entity.Habilitado = newEntity.Habilitado;
                         entity.FechaModificacion = DateTime.Now;
-                        entity.PersonaModificoID = SessionHelper.CURRENT_PERSON_ID;
-                        entity.PersonaRegistroID = SessionHelper.CURRENT_PERSON_ID;
+                        entity.IdPerMod = SessionHelper.CURRENT_PERSON_ID;
+                        entity.IdPerReg = SessionHelper.CURRENT_PERSON_ID;
                         db.SaveChanges();
                         responseModel.Error = false;
                     }
@@ -108,7 +108,7 @@ namespace MVCAgropecuaria.BusinessLogicLayer
         {
             return new Cargo
             {
-                ID = RolBd.ID,
+                Id = RolBd.Id,
                 Descripcion = RolBd.Descripcion?.Trim(),
             };
         }

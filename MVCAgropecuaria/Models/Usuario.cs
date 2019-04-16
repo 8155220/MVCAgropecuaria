@@ -8,7 +8,7 @@ namespace MVCAgropecuaria.Models
 {
     public class Usuario
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
 
@@ -16,16 +16,16 @@ namespace MVCAgropecuaria.Models
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaModificacion { get; set; }
 
-        public int PersonaID { get; set; }
-        public int RolID { get; set; }
+        public int IdPersona { get; set; }
+        public int IdRol { get; set; }
 
-        [ForeignKey("PersonaID")]
+        [ForeignKey("IdPersona")]
         public virtual Persona Persona{get;set;}
-        [ForeignKey("RolID")]
+        [ForeignKey("IdRol")]
         public virtual Rol Rol { get; set; }
 
-        public int? PersonaRegistroID { get; set; }
-        public int? PersonaModificoID { get; set; }
+        public int? IdPerReg { get; set; }
+        public int? IdPerMod { get; set; }
 
     }
 }

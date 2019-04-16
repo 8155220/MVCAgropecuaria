@@ -7,13 +7,13 @@ namespace MVCAgropecuaria.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class agro5 : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(agro5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904141537190_agro5"; }
+            get { return "201904160152538_Initial-Create"; }
         }
         
         string IMigrationMetadata.Source

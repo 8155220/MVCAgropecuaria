@@ -103,7 +103,7 @@ namespace MVCAgropecuaria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Descripcion,Habilitado")] Rol rol)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Habilitado")] Rol rol)
         {
             if (ModelState.IsValid)
             {

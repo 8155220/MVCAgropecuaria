@@ -8,7 +8,7 @@ namespace MVCAgropecuaria.Models
 {
     public class Persona
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Sexo { get; set; }
@@ -25,13 +25,14 @@ namespace MVCAgropecuaria.Models
         public string TelefonoReferencia { get; set; }
 
         //foreign key
-        public int? PersonaRegistroID { get; set; }
-        public int? PersonaModificoID { get; set; }
+        public int? IdPerReg { get; set; }
+        public int? IdPerMod { get; set; }
         //Navigation Property
         public virtual Cargo Cargo { get; set; }
-        [ForeignKey("PersonaRegistroID")]
+        [ForeignKey("IdPerReg")]
         public virtual Persona PersonaRegistro { get; set; }
-        //[ForeignKey("PersonaModificoID")]
+        //[ForeignKey("IdPerMod")]
+        [ForeignKey("IdPerMod")]
         public virtual Persona PersonaModifico { get; set; }
 
     }
